@@ -1,4 +1,4 @@
-package com.myproject.expense;
+package com.myproject.budgetplanner.expenseType;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +28,6 @@ public class ExpenseType {
     private String expenseCategory;
 
     
-
+    //do i need getters and setters
 
 }

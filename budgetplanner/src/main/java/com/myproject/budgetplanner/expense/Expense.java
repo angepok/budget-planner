@@ -1,4 +1,4 @@
-package com.myproject.expense;
+package com.myproject.budgetplanner.expense;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
