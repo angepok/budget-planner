@@ -38,6 +38,10 @@ public class Expense {
     @NotEmpty(message = "Please specify the type of expense")
     private String expenseType;
 
+    public void setExpenseType(String expenseType) {
+        this.expenseType = expenseType;
+    }
+    
     /*
      * With these validations, the amount field must contain a non-null BigDecimal value greater than 0.0, 
      * formatted with up to 15 integer digits and exactly 2 decimal places if needed.

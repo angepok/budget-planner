@@ -11,7 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 @Repository
-public interface ExpenseRepository extends JpaRepository<ExpenseType,Long> {
+public interface ExpenseRepository extends JpaRepository<Expense,Long> {
     /**
      * Check if an ExpenseType for a given expense(case-insensitive) exists.
      *

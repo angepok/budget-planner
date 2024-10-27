@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 import com.myproject.budgetplanner.expense.ExpenseRepository;
+import com.myproject.budgetplanner.expenseType.ExpenseType;
+import com.myproject.budgetplanner.expenseType.ExpenseTypeService;
 import com.myproject.budgetplanner.expense.Expense;
 
 import java.math.BigDecimal;
@@ -21,17 +23,19 @@ import org.springframework.data.domain.Sort;
 public class ExpenseService {
 
     public final ExpenseRepository expenseRepository;
+    public final ExpenseTypeService expenseTypeService;
 
     //instance of expense repo
-    public ExpenseService(ExpenseRepository expenseRepository){
+    public ExpenseService(ExpenseRepository expenseRepository, ExpenseTypeService expenseTypeService){
         this.expenseRepository = expenseRepository;
+        this.expenseTypeService = expenseTypeService;
     }
 
-    /* 
+    
     //getAllExpenses
     public List<Expense> getAllExpenses(){
-        Sort.by("creationDate").descending();
-        return expenseRepository.findAll();
+        //Sort.by("creationDate").descending();
+        return expenseRepository.findAll(Sort.by("creationDate").descending());
     }
 
     //getExpenseById
@@ -40,8 +44,9 @@ public class ExpenseService {
         .orElseThrow(() -> new EntityNotFoundException("Expense not found with id: " + id));
     }
     //createExpense
-    public Expense createExpense(Expense entity) {
-        return expenseRepository.save(entity);
+    public Expense createExpense(Expense expense) {
+       
+        return expenseRepository.save(expense);
     }
     
 
@@ -56,18 +61,24 @@ public class ExpenseService {
         existingExpense.setExpenseType(updatedExpense.getExpenseType());
         existingExpense.setAmount(updatedExpense.getAmount());
         existingExpense.setDate(updatedExpense.getDate());
-    
+        
+        // Update expense type if needed
+       //
+       // if (updatedExpense.getExpenseType() != null) {
+        //    ExpenseType newType = expenseTypeService.findById(updatedExpense.getExpenseType().getId());
+         //   existingExpense.setExpenseType(newType);
+       // }
+
         // Save the updated expense
         return expenseRepository.save(existingExpense);
     }
     
 
     //deleteExpense
-    public void deleteById(Long id) {
-        Expense expenseToBeDeleted = findById(id);
-        expenseRepository.delete(expenseToBeDeleted);
+    public void deleteExpense(Expense expense) {
+        expenseRepository.delete(expense);
     }
-        */
+        
     
     //necessaary for budget class
     
