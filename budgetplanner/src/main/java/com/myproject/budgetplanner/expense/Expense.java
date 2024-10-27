@@ -39,7 +39,7 @@ public class Expense {
     private String name;
 
     @NotEmpty(message = "Please specify the type of expense")
-    private String expensetype;
+    private String expenseType;
 
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer=15, fraction=2)

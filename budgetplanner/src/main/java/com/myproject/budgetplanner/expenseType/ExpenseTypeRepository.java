@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ExpenseTypeRepository extends JpaRepository<ExpenseType, Long>{
+    boolean existsByExpenseTypeIgnoreCase(String expenseType);
 
 }

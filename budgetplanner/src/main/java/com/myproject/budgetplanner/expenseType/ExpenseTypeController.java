@@ -33,7 +33,7 @@ public class ExpenseTypeController {
     }
 
     @PostMapping(produces = "application/json")
-    public ExpenseType createExpenseType(@RequestBody ExpenseType expenseType){
+    public ExpenseType createExpenseType(@RequestBody ExpenseType expenseType) throws ExpenseTypeException{
         return expenseTypeService.createExpenseType(expenseType);
     }
 
