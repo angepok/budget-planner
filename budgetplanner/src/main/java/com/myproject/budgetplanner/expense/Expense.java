@@ -7,9 +7,6 @@ import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotEmpty;
@@ -33,13 +30,19 @@ public class Expense {
     @SequenceGenerator(name = "expense_seq_generator", sequenceName = "EXPENSE_SEQ", allocationSize = 1)
     private long id;
     //need to insert wrong data entered annotation
-    //is notnulll annoation neede too
+    //is notnulll annotation needed too
 
     @NotEmpty(message = "Please specify the name of expense")
     private String name;
 
     @NotEmpty(message = "Please specify the type of expense")
     private String expenseType;
+
+    /*
+     * With these validations, the amount field must contain a non-null BigDecimal value greater than 0.0, 
+     * formatted with up to 15 integer digits and exactly 2 decimal places if needed.
+     NotNull Specifies that amount cannot be null.
+     */
 
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer=15, fraction=2)

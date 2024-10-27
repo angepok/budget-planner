@@ -2,6 +2,7 @@ package com.myproject.budgetplanner.expenseType;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityNotFoundException;
 import com.myproject.budgetplanner.expenseType.*;
 
@@ -57,5 +58,22 @@ public class ExpenseTypeService {
         expenseTypeRepository.deleteById(id);
     }
 
+    /**
+     * Initializes the application's default data.
+     *
+     * This method is automatically executed during application startup due to the
+     * presence of the {@link PostConstruct} annotation. It checks if there are any
+     * existing ExpenseType records in the database. If no records are found, it
+     * creates and saves a default ExpenseType with the name "Home".
+     
+    @PostConstruct
+    public void init() {
+        List <ExpenseType> allExpenses = expenseTypeRepository.findAll();
+        if (((Collection<?>) allExpenses).isEmpty()) {
+            ExpenseType defaultExpenseType = new ExpenseType(null, "Home");
+            expenseTypeRepository.save(defaultExpenseType);
+        }
+    }
+        */
 
 }
