@@ -83,9 +83,8 @@ public class ExpenseService {
     //necessaary for budget class
     
     //Get totalExpenses
-    public BigDecimal getTotalAmount(Iterable<Expense> expenses) {
-    return StreamSupport
-            .stream(expenses.spliterator(), false)
+    public BigDecimal getTotalAmount(List<Expense> expenses) {
+    return expenses.stream()
             .map(Expense::getAmount)
             .reduce(BigDecimal.ZERO, BigDecimal::add);
 }

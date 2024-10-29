@@ -24,12 +24,12 @@ public class IncomeController {
 
     @GetMapping
     public List<Income> getAllIncome(){
-        return incomeService.findAll();
+        return incomeService.getAllIncome();
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
     public  Income getIncomeById(@PathVariable long id){
-        return incomeService.findById(id);
+        return incomeService.getIncome(id);
     }
 
     @PostMapping(produces = "application/json")
