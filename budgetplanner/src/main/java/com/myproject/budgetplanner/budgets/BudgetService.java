@@ -1,9 +1,14 @@
 package com.myproject.budgetplanner.budgets;
 
+import com.myproject.budgetplanner.expense.Expense;
 import com.myproject.budgetplanner.expense.ExpenseService;
+import com.myproject.budgetplanner.income.Income;
 import com.myproject.budgetplanner.income.IncomeService;
+import com.myproject.budgetplanner.budgets.MonthlyBudget;
 
 import java.math.BigDecimal;
+import java.time.Month;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -37,5 +42,36 @@ public class BudgetService {
         BigDecimal balance = totalIncome.subtract(totalExpenses);
         return new Budget(totalIncome, totalExpenses, balance);
     }
+
+    public MonthlyBudget calculateMonthlyBudget(int year, Month month) {
+        List<Income> monthlyIncome = incomeService.getIncomeByMonth(year, month);
+        List<Expense> monthlyExpenses = expenseService.getExpensesByMonth(year, month);
+
+        BigDecimal totalIncome = monthlyIncome.stream()
+                .map(Income::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal totalExpenses = monthlyExpenses.stream()
+                .map(Expense::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return new MonthlyBudget(month, year, totalIncome, totalExpenses);
+    }
+
+    public YearlyBudget calculateYearlyBudget(int year) {
+        List<Income> yearlyIncome = incomeService.getIncomeByYear(year);
+        List<Expense> yearlyExpenses = expenseService.getExpensesByYear(year);
+
+        BigDecimal totalIncome = yearlyIncome.stream()
+                .map(Income::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal totalExpenses = yearlyExpenses.stream()
+                .map(Expense::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        return new YearlyBudget(year, totalIncome, totalExpenses);
+    }
 }
+
 

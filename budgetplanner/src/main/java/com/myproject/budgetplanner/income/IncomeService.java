@@ -1,12 +1,17 @@
 package com.myproject.budgetplanner.income;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+
 
 import com.myproject.budgetplanner.expense.Expense;
 
 import jakarta.persistence.EntityNotFoundException;
 
 import java.math.BigDecimal;
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 
 @Service
@@ -58,11 +63,27 @@ public class IncomeService {
         incomeRepository.delete(income);
     }
 
+    //get total income
     public BigDecimal getTotalIncome() {
         List<Income> incomes = incomeRepository.findAll();
         return incomes.stream()
                 .map(Income::getAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
+    //get total income per Month
+    public List<Income> getIncomeByMonth (int year, Month month){
+        return incomeRepository.findTotalIncomeByMonth(year, month);
+
+    }
+
+    //get total income per Yera
+    public List<Income> getIncomeByYear (int year){
+        return incomeRepository.findTotalIncomeByYear(year);
+
+    }
+
+
+
 
 }

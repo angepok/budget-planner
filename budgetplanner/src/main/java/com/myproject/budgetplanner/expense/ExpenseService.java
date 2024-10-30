@@ -89,6 +89,15 @@ public class ExpenseService {
             .reduce(BigDecimal.ZERO, BigDecimal::add);
 }
 
+    //Get expenses by Month
+    public List<Expense> getExpensesByMonth(int year, Month month){
+        return expenseRepository.findByYearAndMonth(year, month.getValue());
+    }
+
+    public List<Expense> getExpensesByYear(int year) {
+        return expenseRepository.findByYear(year);
+    }
+
     //Get Expenses by Year, Month, and Type
     public Page<Expense> getExpensesByYearMonthAndType(int year, Month month, String expenseType, Pageable page) {
     LocalDate startDate = LocalDate.of(year, month, 1);
