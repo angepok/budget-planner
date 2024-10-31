@@ -8,10 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.myproject.budgetplanner.expenseType.ExpenseType;
-import com.myproject.budgetplanner.expenseType.ExpenseTypeException;
-import com.myproject.budgetplanner.expenseType.ExpenseTypeService;
-
 public class ExpenseController {
     //constructor based dependency injection
     public final ExpenseService expenseService;

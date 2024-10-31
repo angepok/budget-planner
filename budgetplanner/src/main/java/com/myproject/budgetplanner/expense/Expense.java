@@ -18,6 +18,7 @@ import lombok.Data;
 
 
 @Entity
+@Table(name ="expense")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

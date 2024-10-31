@@ -11,7 +11,7 @@ public class MonthlyBudget {
     private BigDecimal balance;
 
     
-    public MonthlyBudget(Month month, int year, BigDecimal totalIncome, BigDecimal totalExpenses) {
+     public MonthlyBudget(Month month, int year, BigDecimal totalIncome, BigDecimal totalExpenses) {
         this.month = month;
         this.year = year;
         this.totalIncome = totalIncome;

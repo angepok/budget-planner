@@ -13,19 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 public class BudgetController {
-
-   
     
-    
-        private final BudgetService budgetService;
+    private final BudgetService budgetService;
     
         public BudgetController(BudgetService budgetService) {
             this.budgetService = budgetService;
         }
     
         @GetMapping("/summary")
-        public Budget getBudgetSummary() {
-            return budgetService.getBudgetSummary();
+        public Budget getBudgetSummary(String name) {
+            return budgetService.getBudgetSummary(name);
         }
     
         @GetMapping("/balance")
