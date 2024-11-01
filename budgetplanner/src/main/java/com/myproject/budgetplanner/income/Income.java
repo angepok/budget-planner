@@ -3,6 +3,7 @@ package com.myproject.budgetplanner.income;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Month;
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -32,6 +33,9 @@ public class Income {
     @NotEmpty(message = "Please specify the name of income")
     private String name;
 
+    private int year;
+    private Month month;
+
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer=15, fraction=2)
     @NotNull(message = "Please specify an amount")
@@ -41,19 +45,14 @@ public class Income {
      this.amount = amount;
     }
 
+    @Column(name = "income_date")
+    private LocalDate date;
+    
     @NotNull(message = "Date cannot be empty")
     private LocalDate dateReceived;
 
     @CreationTimestamp
     private Timestamp creationDate;
-
-    //public Object getDate() {
-    //    throw new UnsupportedOperationException("Unimplemented method 'getDate'");
-    //}
-
-   // public void setDate(Object date) {
-    //    throw new UnsupportedOperationException("Unimplemented method 'setDate'");
-  //  }
 
 
 

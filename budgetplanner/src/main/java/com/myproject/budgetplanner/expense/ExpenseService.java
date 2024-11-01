@@ -42,7 +42,6 @@ public class ExpenseService {
     public Optional<Expense> getExpenseById(Long id) {
         return expenseRepository.findById(id);
     }
-
     /*
     public Expense getExpenseById(Long id){
         return expenseRepository.findById(id)
@@ -57,8 +56,7 @@ public class ExpenseService {
     
         /**
     * Updates an existing Expense record.
-    *
-    * This method fetches the existing expense by ID, updates the specified fields, 
+    *fetches the existing expense by ID, updates the specified fields, 
      * and saves the changes to the database.
     *
     * @param id the ID of the expense to update
@@ -96,24 +94,35 @@ public class ExpenseService {
         expenseRepository.delete(expense);
     }
         
-    //necessaary for budget class
+
     
     //Get totalExpenses
-    public BigDecimal getTotalAmount(List<Expense> expenses) {
-    return expenses.stream()
-            .map(Expense::getAmount)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-}
+    public BigDecimal getTotalExpense() { 
+        return expenseRepository.findTotalExpense(); 
 
-    //Get expenses by Month
-    public List<Expense> getExpensesByMonth(int year, Month month){
-        return expenseRepository.findByYearAndMonth(year, month.getValue());
+     }
+
+    // get total expenses by Month
+    public BigDecimal getExpensesByMonth(int year, Month month){
+        return expenseRepository.findTotalExpenseByMonth(year, month);
     }
 
-    public List<Expense> getExpensesByYear(int year) {
-        return expenseRepository.findByYear(year);
+    // get total expenses by year
+    public BigDecimal findExpensesByYear(int year){
+        return expenseRepository.findTotalExpenseByYear(year);
     }
 
+    //Get list of expenses by Month
+    //public List<Expense> getListExpensesByMonth(int year, Month month){
+     //return expenseRepository.findByYearAndMonth(year, month.getValue());
+    //}
+
+    //get list of expense by year
+    //public List<Expense> getExpensesByYear(int year) {
+    //   return expenseRepository.findByYear(year);
+    //}
+
+    /* 
     // Can chnage Page to List
     //Get Expenses by Year, Month, and Type
     public Page<Expense> getExpensesByYearMonthAndType(int year, Month month, String expenseType, Pageable page) {
@@ -134,7 +143,7 @@ public class ExpenseService {
     public Page<Expense> getExpensesByType(String expenseType, Pageable page) {
         return expenseRepository.findByExpenseTypeOrderByCreationDateDesc(expenseType, page);
     }
-    
+  */  
  
 
 

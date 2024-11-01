@@ -22,15 +22,13 @@ public class IncomeService {
         
     }
 
+    // get List of all income entries
     public List<Income> getAllIncome(){
         return incomeRepository.findAll();  
     }
 
         /**
     * Creates a new Income entry after validating its amount.
-    *
-    * @param income The income entity to save
-    * @return The saved Income entity
      * @throws IncomeException if the income amount is negative
         */
     public Income createIncome(Income income) throws IncomeException {
@@ -66,23 +64,24 @@ public class IncomeService {
     }
 
     //get total income
-    public BigDecimal getTotalIncome() {
-        return incomeRepository.findAll().stream()
-                .map(Income::getAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    public BigDecimal getTotalIncome() { 
+        return incomeRepository.findTotalIncome(); 
+               
     }
 
     //get total income per Month
-    public List<Income> getIncomeByMonth (int year, Month month){
-        return incomeRepository.findTotalIncomeByMonth(year, month);
+    public BigDecimal getIncomeByMonth (int year, Month month){
+      return incomeRepository.findTotalIncomeByMonth(year, month);
 
     }
 
-    //get total income per Yera
-    public List<Income> getIncomeByYear (int year){
+    //get total income per year
+    public BigDecimal getTotalIncomeByYear(int year) {
         return incomeRepository.findTotalIncomeByYear(year);
-
     }
+
+
+    
 
 
 

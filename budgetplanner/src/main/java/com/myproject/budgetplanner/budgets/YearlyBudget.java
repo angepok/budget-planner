@@ -1,9 +1,11 @@
 package com.myproject.budgetplanner.budgets;
 
-import java.math.BigDecimal;
+
+//import java.math.BigDecimal;
 
 public class YearlyBudget {
 
+    /* 
     private int year;
     private BigDecimal totalIncome;
     private BigDecimal totalExpenses;
@@ -41,6 +43,6 @@ public class YearlyBudget {
     public void setBalance(BigDecimal balance) {
     }
 
-    
+    */
 
 }

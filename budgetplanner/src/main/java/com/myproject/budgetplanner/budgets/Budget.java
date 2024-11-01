@@ -12,12 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@Table(name = "budget")
-@AllArgsConstructor
-@NoArgsConstructor
+//@Entity
+//@Data
+//@Table(name = "budget")
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Budget {
+    /* 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,5 +62,5 @@ public class Budget {
         this.balance = totalIncome.subtract(totalExpenses);
     }
 
-    
+    */
 }

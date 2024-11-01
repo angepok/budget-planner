@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class BudgetService {
 
+    /* 
+
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
 
@@ -30,7 +32,7 @@ public class BudgetService {
     }
 
     public BigDecimal calculateTotalExpenses(){
-        return expenseService.getTotalAmount(expenseService.getAllExpenses());
+        return expenseService.getTotalExpense();
     }
 
     public BigDecimal calculateBalance(){
@@ -39,12 +41,18 @@ public class BudgetService {
 
     // Budget summary method with name parameter
     public Budget getBudgetSummary(String name) {
-        //BigDecimal totalIncome = calculateTotalIncome();
-        //BigDecimal totalExpenses = calculateTotalExpenses();
-        //BigDecimal balance = totalIncome.subtract(totalExpenses);
-        return new Budget(name, calculateTotalIncome(), calculateTotalExpenses(), calculateBalance());
+        if (name == null || name.trim().isEmpty()) {
+        throw new IllegalArgumentException("Budget name must not be empty.");
+    }
+        BigDecimal totalIncome = calculateTotalIncome();
+        BigDecimal totalExpenses = calculateTotalExpenses();
+        BigDecimal balance = totalIncome.subtract(totalExpenses);
+
+    return new Budget(name, totalIncome, totalExpenses, balance);
+        
     }
 
+    /* 
     // Monthly budget with error handling
     public MonthlyBudget calculateMonthlyBudget(int year, Month month) {
         List<Income> monthlyIncome = incomeService.getIncomeByMonth(year, month);
@@ -68,19 +76,19 @@ public class BudgetService {
 
     // Yearly budget with error handling
     public YearlyBudget calculateYearlyBudget(int year) {
-        List<Income> yearlyIncome = incomeService.getIncomeByYear(year);
+        Double yearlyIncome = incomeService.getTotalIncomeByYear(year);
         List<Expense> yearlyExpenses = expenseService.getExpensesByYear(year);
 
 
-        if (yearlyIncome.isEmpty() && yearlyExpenses.isEmpty()) {
-            // Option 1: Return a default budget with zero values
-            //return new YearlyBudget(year, BigDecimal.ZERO, BigDecimal.ZERO);
+        //Check for null instead of using isEmpty()
+        boolean incomeAvailable = (yearlyIncome != null && yearlyIncome > 0);
+        boolean expensesAvailable = (yearlyExpenses != null && !yearlyExpenses.isEmpty());
+       
+        if (!incomeAvailable && !expensesAvailable) {
             throw new NoDataAvailableException("No income or expense data available for the year " + year);
         }
         
-        BigDecimal totalIncome = yearlyIncome.stream()
-                .map(Income::getAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalIncome = (yearlyIncome != null) ? BigDecimal.valueOf(yearlyIncome) : BigDecimal.ZERO;
 
         BigDecimal totalExpenses = yearlyExpenses.stream()
                 .map(Expense::getAmount)
@@ -89,6 +97,8 @@ public class BudgetService {
         return new YearlyBudget(year, totalIncome, totalExpenses); 
         
     }
+        */
 }
+
 
 

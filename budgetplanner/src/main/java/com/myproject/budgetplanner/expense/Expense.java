@@ -31,12 +31,13 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     //need to insert wrong data entered annotation
-    //is notnulll annotation needed too
+    
 
     @NotNull(message = "Please specify the name of expense")
     @NotEmpty(message = "Expense name cannot be empty")
     private String name;
 
+    
     @NotNull(message = "Expense type cannot be null")
     @ManyToOne
     @JoinColumn(name = "expense_type_id", nullable = false)
@@ -53,13 +54,17 @@ public class Expense {
     @Digits(integer=15, fraction=2)
     @NotNull(message = "Please specify an amount")
     private BigDecimal amount;
-    //private double amount;
+    
 
     @NotNull(message = "Date cannot be empty!")
     private LocalDate date;
 
     @CreationTimestamp
     private Timestamp creationDate;
+
+    public String getExpenseTypeName() {
+        return expenseType != null ? expenseType.getExpenseType() : null; // Assuming ExpenseType has a getExpenseType() method
+    }
 
 
 }

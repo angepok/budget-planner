@@ -17,7 +17,7 @@ public class ExpenseTypeService {
         this.expenseTypeRepository = expenseTypeRepository;
     }
 
-    //getExpenseTypes //not necessary
+    //getExpenseTypes 
     public List<ExpenseType> getAllExpenseTypes(){
         return expenseTypeRepository.findAll();
     }
@@ -27,6 +27,11 @@ public class ExpenseTypeService {
     //If the Optional is empty, it throws an EntityNotFoundException
     public ExpenseType getExpenseTypeById(Long id) {
         return expenseTypeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ExpenseType not found with id: " + id));
+    }
+
+    public ExpenseType getExpenseTypeByName(String name) {
+        return expenseTypeRepository.findByNameIgnoreCase(name)
+                .orElseThrow(() -> new EntityNotFoundException("ExpenseType not found with name: " + name));
     }
 
     //create expensetype
