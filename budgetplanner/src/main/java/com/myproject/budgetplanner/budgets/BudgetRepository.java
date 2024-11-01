@@ -12,10 +12,10 @@ import com.myproject.budgetplanner.income.Income;
 
 @Repository
 public interface BudgetRepository extends JpaRepository<Budget, Long>{
-
-    @Query("SELECT i FROM Income i WHERE YEAR(i.date) = :year AND MONTH(i.date) = :month")
+    // is function necessary
+    @Query("SELECT i FROM Income i WHERE FUNCTION YEAR(i.date) = :year AND MONTH(i.date) = :month")
     List<Income> findByYearAndMonth(@Param("year") int year, @Param("month") int month);
 
-    @Query("SELECT i FROM Income i WHERE YEAR(i.date) = :year")
+    @Query("SELECT i FROM Income i WHERE FUNCTION YEAR(i.date) = :year")
     List<Income> findByYear(@Param("year") int year);
 }

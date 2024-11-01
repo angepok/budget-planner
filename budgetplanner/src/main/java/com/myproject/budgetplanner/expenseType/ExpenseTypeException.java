@@ -1,5 +1,4 @@
 package com.myproject.budgetplanner.expenseType;
-import org.springframework.dao.DataIntegrityViolationException;
 
 /*
  *ExpenseTypeException would typically be thrown when a duplicate expense type is being added, 

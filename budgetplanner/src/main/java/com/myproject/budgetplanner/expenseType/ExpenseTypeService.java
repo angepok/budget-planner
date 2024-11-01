@@ -1,13 +1,9 @@
 package com.myproject.budgetplanner.expenseType;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityNotFoundException;
-import com.myproject.budgetplanner.expenseType.*;
-
-
-
 import java.util.List;
 
 @Service
@@ -16,6 +12,7 @@ public class ExpenseTypeService {
     private final ExpenseTypeRepository expenseTypeRepository;
 
     //instance of expensetype repo
+    @Autowired
     public ExpenseTypeService(ExpenseTypeRepository expenseTypeRepository){
         this.expenseTypeRepository = expenseTypeRepository;
     }

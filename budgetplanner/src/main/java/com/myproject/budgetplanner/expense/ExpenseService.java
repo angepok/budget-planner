@@ -3,30 +3,30 @@ package com.myproject.budgetplanner.expense;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
-import com.myproject.budgetplanner.expense.ExpenseRepository;
-import com.myproject.budgetplanner.expenseType.ExpenseType;
+import jakarta.validation.constraints.NotNull;
+
 import com.myproject.budgetplanner.expenseType.ExpenseTypeService;
-import com.myproject.budgetplanner.expense.Expense;
+import com.myproject.budgetplanner.expenseType.ExpenseTypeRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
-import java.util.stream.StreamSupport;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 @Service
-//@Transactional
 public class ExpenseService {
 
     public final ExpenseRepository expenseRepository;
     public final ExpenseTypeService expenseTypeService;
-
+    
     //instance of expense repo
-    public ExpenseService(ExpenseRepository expenseRepository, ExpenseTypeService expenseTypeService){
+    @Autowired
+    public ExpenseService(ExpenseRepository expenseRepository, ExpenseTypeService expenseTypeService, ExpenseTypeRepository expenseTypeRepository){
         this.expenseRepository = expenseRepository;
         this.expenseTypeService = expenseTypeService;
     }
@@ -34,18 +34,24 @@ public class ExpenseService {
     
     //getAllExpenses
     public List<Expense> getAllExpenses(){
-        //Sort.by("creationDate").descending();
         return expenseRepository.findAll(Sort.by("creationDate").descending());
     }
 
-    //getExpenseById
+    //getExpenseById 
+    //Otional works better than throwing  an exception
+    public Optional<Expense> getExpenseById(Long id) {
+        return expenseRepository.findById(id);
+    }
+
+    /*
     public Expense getExpenseById(Long id){
         return expenseRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException("Expense not found with id: " + id));
     }
+    */
+
     //createExpense
-    public Expense createExpense(Expense expense) {
-       
+    public Expense createExpense(@NotNull Expense expense) {
         return expenseRepository.save(expense);
     }
     
@@ -63,23 +69,22 @@ public class ExpenseService {
         existingExpense.setDate(updatedExpense.getDate());
         
         // Update expense type if needed
-       //
-       // if (updatedExpense.getExpenseType() != null) {
-        //    ExpenseType newType = expenseTypeService.findById(updatedExpense.getExpenseType().getId());
-         //   existingExpense.setExpenseType(newType);
-       // }
+       if (updatedExpense.getExpenseType() != null) {
+        existingExpense.setExpenseType(updatedExpense.getExpenseType());
+        }
 
         // Save the updated expense
         return expenseRepository.save(existingExpense);
     }
-    
 
+    
     //deleteExpense
-    public void deleteExpense(Expense expense) {
+    public void deleteExpense(Long id) {
+        Expense expense = expenseRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Expense not found with id: " + id));
         expenseRepository.delete(expense);
     }
         
-    
     //necessaary for budget class
     
     //Get totalExpenses

@@ -23,7 +23,6 @@ import lombok.AllArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Income {
 
     @Id

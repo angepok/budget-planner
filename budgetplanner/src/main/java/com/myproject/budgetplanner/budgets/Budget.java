@@ -8,10 +8,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @Table(name = "budget")
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class Budget {
 
     @Id
@@ -19,70 +24,34 @@ public class Budget {
     private long id;
 
     private String name;
-    private BigDecimal balance;
-    private BigDecimal totalIncome;
-    private BigDecimal totalExpenses;
 
-    //Default constructor
-    public Budget(){
+    // Initialized with default value of 0.0 to avid NullPointerException
+    private BigDecimal balance = BigDecimal.ZERO;
+    private BigDecimal totalIncome = BigDecimal.ZERO;
+    private BigDecimal totalExpenses = BigDecimal.ZERO;
 
-    }
 
     // all argument constructor
     public Budget(String name, BigDecimal totalIncome, BigDecimal totalExpenses,  BigDecimal balance){
         this.name = name;
-        this.totalExpenses = totalExpenses;
-        this.totalIncome = totalIncome;
+        this.totalExpenses = totalExpenses != null ? totalExpenses : BigDecimal.ZERO; // Handle null input
+        this.totalIncome = totalIncome != null ? totalIncome : BigDecimal.ZERO;  // Handle null input
         this.balance = totalIncome.subtract(totalExpenses);
 
     }
 
-    // Getters and setters for ID
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    // getname and setname
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    // getbalance and set balance
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    // get and set income
-    public BigDecimal getTotalIncome() {
-        return totalIncome;
-    }
-
+    
+    // set income
     public void setTotalIncome(BigDecimal totalIncome) {
-        this.totalIncome = totalIncome;
+        this.totalIncome = totalIncome != null ? totalIncome : BigDecimal.ZERO; // Avoids null
 
         // Update balance whenever income or expenses change
         updateBalance(); 
     }
 
-    //get and set total expenses
-    public BigDecimal getTotalExpenses() {
-        return totalExpenses;
-    }
-
+    // set total expenses
     public void setTotalExpenses(BigDecimal totalExpenses) {
-        this.totalExpenses = totalExpenses;
+        this.totalExpenses = totalExpenses != null ? totalExpenses : BigDecimal.ZERO; // Avoids null
         // Update balance whenever income or expenses change
         updateBalance(); 
     }

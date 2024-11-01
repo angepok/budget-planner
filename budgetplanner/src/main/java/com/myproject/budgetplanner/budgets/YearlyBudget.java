@@ -7,8 +7,6 @@ public class YearlyBudget {
     private int year;
     private BigDecimal totalIncome;
     private BigDecimal totalExpenses;
-    private BigDecimal balance;
-
     
     public YearlyBudget(int year, BigDecimal totalIncome, BigDecimal totalExpenses) {
         this.year = year;
@@ -41,7 +39,6 @@ public class YearlyBudget {
     }
     
     public void setBalance(BigDecimal balance) {
-        this.balance = balance;
     }
 
     

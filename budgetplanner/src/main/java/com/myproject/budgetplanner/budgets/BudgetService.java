@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.Month;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +18,7 @@ public class BudgetService {
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
 
+    @Autowired
     public BudgetService(IncomeService incomeService, ExpenseService expenseService){
         this.incomeService = incomeService;
         this.expenseService = expenseService;

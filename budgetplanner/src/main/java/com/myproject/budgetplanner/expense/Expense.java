@@ -1,11 +1,14 @@
 package com.myproject.budgetplanner.expense;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.myproject.budgetplanner.expenseType.ExpenseType;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
@@ -22,26 +25,23 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Expense {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "expense_seq_generator")
-    //MAY USE A SEQUENCE GENRATOR, if so no UUID, or change to UUID
-    @SequenceGenerator(name = "expense_seq_generator", sequenceName = "EXPENSE_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     //need to insert wrong data entered annotation
     //is notnulll annotation needed too
 
-    @NotEmpty(message = "Please specify the name of expense")
+    @NotNull(message = "Please specify the name of expense")
+    @NotEmpty(message = "Expense name cannot be empty")
     private String name;
 
-    @NotEmpty(message = "Please specify the type of expense")
-    private String expenseType;
+    @NotNull(message = "Expense type cannot be null")
+    @ManyToOne
+    @JoinColumn(name = "expense_type_id", nullable = false)
+    private ExpenseType expenseType;
 
-    public void setExpenseType(String expenseType) {
-        this.expenseType = expenseType;
-    }
     
     /*
      * With these validations, the amount field must contain a non-null BigDecimal value greater than 0.0, 

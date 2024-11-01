@@ -1,17 +1,10 @@
 package com.myproject.budgetplanner.income;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
-
-
-import com.myproject.budgetplanner.expense.Expense;
-
 import jakarta.persistence.EntityNotFoundException;
 
 import java.math.BigDecimal;
 import java.time.Month;
-import java.time.Year;
 import java.util.List;
 
 @Service
@@ -59,8 +52,8 @@ public class IncomeService {
 
 
     //deleteIncome
-    public void deleteIncome(Income income) {
-        incomeRepository.delete(income);
+    public void deleteIncome(Long id) {
+        incomeRepository.deleteById(id);
     }
 
     //get total income
