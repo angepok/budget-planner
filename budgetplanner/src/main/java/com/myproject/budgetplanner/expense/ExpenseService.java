@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -25,7 +25,7 @@ public class ExpenseService {
     public final ExpenseTypeService expenseTypeService;
     
     //instance of expense repo
-    @Autowired
+    //@Autowired
     public ExpenseService(ExpenseRepository expenseRepository, ExpenseTypeService expenseTypeService, ExpenseTypeRepository expenseTypeRepository){
         this.expenseRepository = expenseRepository;
         this.expenseTypeService = expenseTypeService;
@@ -55,6 +55,17 @@ public class ExpenseService {
         return expenseRepository.save(expense);
     }
     
+        /**
+    * Updates an existing Expense record.
+    *
+    * This method fetches the existing expense by ID, updates the specified fields, 
+     * and saves the changes to the database.
+    *
+    * @param id the ID of the expense to update
+    * @param updatedExpense the expense data to update with
+    * @return the updated Expense object
+    * @throws EntityNotFoundException if the expense with the specified ID is not found
+        */
 
     //updateExpense
     public Expense updateExpense(Long id, Expense updatedExpense) {
@@ -103,6 +114,7 @@ public class ExpenseService {
         return expenseRepository.findByYear(year);
     }
 
+    // Can chnage Page to List
     //Get Expenses by Year, Month, and Type
     public Page<Expense> getExpensesByYearMonthAndType(int year, Month month, String expenseType, Pageable page) {
     LocalDate startDate = LocalDate.of(year, month, 1);

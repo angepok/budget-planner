@@ -1,6 +1,6 @@
 package com.myproject.budgetplanner.expenseType;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -12,7 +12,7 @@ public class ExpenseTypeService {
     private final ExpenseTypeRepository expenseTypeRepository;
 
     //instance of expensetype repo
-    @Autowired
+    //@Autowired
     public ExpenseTypeService(ExpenseTypeRepository expenseTypeRepository){
         this.expenseTypeRepository = expenseTypeRepository;
     }
@@ -26,7 +26,7 @@ public class ExpenseTypeService {
     //This part of the code handles the case where no ExpenseType entity is found for the given ID. 
     //If the Optional is empty, it throws an EntityNotFoundException
     public ExpenseType getExpenseTypeById(Long id) {
-        return expenseTypeRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return expenseTypeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("ExpenseType not found with id: " + id));
     }
 
     //create expensetype
@@ -50,8 +50,11 @@ public class ExpenseTypeService {
     }
 
 
-    //delete expenseType
+    //delete expenseType, checks if expense exists before deletion
     void deleteExpenseType(Long id){
+        if (!expenseTypeRepository.existsById(id)) {
+            throw new EntityNotFoundException("ExpenseType not found with id: " + id);
+        }
         expenseTypeRepository.deleteById(id);
     }
 

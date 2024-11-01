@@ -37,7 +37,7 @@ public class Income {
     @NotNull(message = "Please specify an amount")
     private BigDecimal amount;
     
-    public void setIncome(BigDecimal amount) {
+    public void setAmount(BigDecimal amount) {
      this.amount = amount;
     }
 
@@ -46,6 +46,14 @@ public class Income {
 
     @CreationTimestamp
     private Timestamp creationDate;
+
+    //public Object getDate() {
+    //    throw new UnsupportedOperationException("Unimplemented method 'getDate'");
+    //}
+
+   // public void setDate(Object date) {
+    //    throw new UnsupportedOperationException("Unimplemented method 'setDate'");
+  //  }
 
 
 

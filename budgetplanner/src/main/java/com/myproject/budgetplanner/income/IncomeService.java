@@ -26,7 +26,13 @@ public class IncomeService {
         return incomeRepository.findAll();  
     }
 
-
+        /**
+    * Creates a new Income entry after validating its amount.
+    *
+    * @param income The income entity to save
+    * @return The saved Income entity
+     * @throws IncomeException if the income amount is negative
+        */
     public Income createIncome(Income income) throws IncomeException {
         if (income.getAmount().compareTo(BigDecimal.ZERO) < 0) {
         throw new IncomeException("Income amount cannot be negative.");
@@ -42,10 +48,10 @@ public class IncomeService {
                 .orElseThrow(() -> new EntityNotFoundException("Income not found with id: " + id));
         
         // Update fields
-        //existingIncome.setName(updatedIncome.getName());
+        existingIncome.setName(updatedIncome.getName());
         //existingIncome.setExpenseType(updatedIncome.getExpenseType());
-       // existingIncome.setAmount(updatedIncome.getAmount());
-       // existingIncome.setDate(updatedIncome.getDate());
+        existingIncome.setAmount(updatedIncome.getAmount());
+        existingIncome.setCreationDate(updatedIncome.getCreationDate());
         
         return incomeRepository.save(existingIncome);
     }
@@ -53,13 +59,15 @@ public class IncomeService {
 
     //deleteIncome
     public void deleteIncome(Long id) {
+        if (!incomeRepository.existsById(id)) {
+            throw new EntityNotFoundException("Income not found with id: " + id);
+        }
         incomeRepository.deleteById(id);
     }
 
     //get total income
     public BigDecimal getTotalIncome() {
-        List<Income> incomes = incomeRepository.findAll();
-        return incomes.stream()
+        return incomeRepository.findAll().stream()
                 .map(Income::getAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }

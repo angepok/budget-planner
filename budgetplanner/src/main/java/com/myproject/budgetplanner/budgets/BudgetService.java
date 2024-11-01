@@ -39,10 +39,10 @@ public class BudgetService {
 
     // Budget summary method with name parameter
     public Budget getBudgetSummary(String name) {
-        BigDecimal totalIncome = calculateTotalIncome();
-        BigDecimal totalExpenses = calculateTotalExpenses();
-        BigDecimal balance = totalIncome.subtract(totalExpenses);
-        return new Budget(name, totalIncome, totalExpenses, balance);
+        //BigDecimal totalIncome = calculateTotalIncome();
+        //BigDecimal totalExpenses = calculateTotalExpenses();
+        //BigDecimal balance = totalIncome.subtract(totalExpenses);
+        return new Budget(name, calculateTotalIncome(), calculateTotalExpenses(), calculateBalance());
     }
 
     // Monthly budget with error handling
@@ -59,7 +59,7 @@ public class BudgetService {
                 .map(Income::getAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        BigDecimal totalExpenses = monthlyExpenses.stream()
+            BigDecimal totalExpenses = monthlyExpenses.stream()
                 .map(Expense::getAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
@@ -74,7 +74,8 @@ public class BudgetService {
 
         if (yearlyIncome.isEmpty() && yearlyExpenses.isEmpty()) {
             // Option 1: Return a default budget with zero values
-            return new YearlyBudget(year, BigDecimal.ZERO, BigDecimal.ZERO);
+            //return new YearlyBudget(year, BigDecimal.ZERO, BigDecimal.ZERO);
+            throw new NoDataAvailableException("No income or expense data available for the year " + year);
         }
         
         BigDecimal totalIncome = yearlyIncome.stream()
