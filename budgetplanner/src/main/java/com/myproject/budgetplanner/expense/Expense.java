@@ -26,7 +26,7 @@ import lombok.Data;
 public class Expense {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "expense_seq_generator")
     //MAY USE A SEQUENCE GENRATOR, if so no UUID, or change to UUID
     @SequenceGenerator(name = "expense_seq_generator", sequenceName = "EXPENSE_SEQ", allocationSize = 1)
     private long id;

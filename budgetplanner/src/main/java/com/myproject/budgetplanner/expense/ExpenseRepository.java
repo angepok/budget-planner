@@ -19,8 +19,8 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long> {
      * A query to the database to determine whether an ExpenseType record
      * with the specified expense category (ignoring case) exists or not.
      *
-     * @param expenseType The expense category to check for existence.
-     * @return {@code true} if an ExpenseType with the specified expense category
+     param expenseType The expense category to check for existence.
+     return {@code true} if an ExpenseType with the specified expense category
      *         (case-insensitive) exists, otherwise {@code false}.
      */
     //@Query("SELECT COUNT(et) > 0 FROM ExpenseType et WHERE LOWER(et.expenseCategory) = LOWER(:expenseCategory)")
@@ -37,10 +37,10 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long> {
 
     Page<Expense>  findByDateBetweenOrderByCreationDateDesc(LocalDate startDate, LocalDate endDate, Pageable page);
 
-    @Query("SELECT e FROM Expense e WHERE YEAR(e.date) = :year AND MONTH(e.date) = :month")
+    @Query("SELECT e FROM expense e WHERE YEAR(e.date) = :year AND MONTH(e.date) = :month")
     List<Expense> findByYearAndMonth(@Param("year") int year, @Param("month") int month);
 
-    @Query("SELECT e FROM Expense e WHERE YEAR(e.date) = :year")
+    @Query("SELECT e FROM expense e WHERE YEAR(e.date) = :year")
     List<Expense> findByYear(@Param("year") int year);
 }
 
