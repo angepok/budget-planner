@@ -47,7 +47,6 @@ public class IncomeService {
         
         // Update fields
         existingIncome.setName(updatedIncome.getName());
-        //existingIncome.setExpenseType(updatedIncome.getExpenseType());
         existingIncome.setAmount(updatedIncome.getAmount());
         existingIncome.setCreationDate(updatedIncome.getCreationDate());
         

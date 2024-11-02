@@ -1,5 +1,6 @@
 package com.myproject.budgetplanner.expense;
 
+
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -22,5 +23,6 @@ public class ExpenseException extends Exception {
     }
 
 }
+
 
 

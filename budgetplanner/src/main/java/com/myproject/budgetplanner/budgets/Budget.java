@@ -1,6 +1,6 @@
 package com.myproject.budgetplanner.budgets;
 
-
+/* 
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 //@AllArgsConstructor
 //@NoArgsConstructor
 public class Budget {
-    /* 
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,4 +63,4 @@ public class Budget {
     }
 
     */
-}
+

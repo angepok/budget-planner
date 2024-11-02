@@ -1,5 +1,6 @@
 package com.myproject.budgetplanner.expense;
 
+
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -50,6 +51,7 @@ public class Expense {
      NotNull Specifies that amount cannot be null.
      */
 
+     
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer=15, fraction=2)
     @NotNull(message = "Please specify an amount")
@@ -68,3 +70,4 @@ public class Expense {
 
 
 }
+

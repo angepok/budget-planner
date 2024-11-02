@@ -47,12 +47,21 @@ public class Income {
 
     @Column(name = "income_date")
     private LocalDate date;
-    
+
     @NotNull(message = "Date cannot be empty")
     private LocalDate dateReceived;
 
     @CreationTimestamp
     private Timestamp creationDate;
+
+    // New constructor
+//    public Income(Long id, String name, BigDecimal amount, int year, Month month) {
+//        this.id = id;
+//        this.name = name;
+//        this.amount = amount;
+//        this.year = year;
+//        this.month = month;
+//    }
 
 
 

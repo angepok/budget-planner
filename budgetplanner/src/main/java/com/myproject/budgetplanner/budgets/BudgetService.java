@@ -1,5 +1,6 @@
 package com.myproject.budgetplanner.budgets;
 
+/* 
 import com.myproject.budgetplanner.NoDataAvailableException;
 import com.myproject.budgetplanner.expense.Expense;
 import com.myproject.budgetplanner.expense.ExpenseService;
@@ -14,8 +15,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BudgetService {
+     
 
-    /* 
+    
 
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
@@ -97,8 +99,8 @@ public class BudgetService {
         return new YearlyBudget(year, totalIncome, totalExpenses); 
         
     }
-        */
+        
 }
-
+*/
 
 

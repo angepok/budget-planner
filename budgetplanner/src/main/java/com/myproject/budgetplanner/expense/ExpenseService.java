@@ -1,5 +1,6 @@
 package com.myproject.budgetplanner.expense;
 
+
 import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -42,6 +43,7 @@ public class ExpenseService {
     public Optional<Expense> getExpenseById(Long id) {
         return expenseRepository.findById(id);
     }
+    
     /*
     public Expense getExpenseById(Long id){
         return expenseRepository.findById(id)
@@ -54,7 +56,7 @@ public class ExpenseService {
         return expenseRepository.save(expense);
     }
     
-        /**
+        /*
     * Updates an existing Expense record.
     *fetches the existing expense by ID, updates the specified fields, 
      * and saves the changes to the database.
@@ -64,7 +66,7 @@ public class ExpenseService {
     * @return the updated Expense object
     * @throws EntityNotFoundException if the expense with the specified ID is not found
         */
-
+        
     //updateExpense
     public Expense updateExpense(Long id, Expense updatedExpense) {
         // Check if the expense exists
@@ -110,7 +112,7 @@ public class ExpenseService {
     // get total expenses by year
     public BigDecimal findExpensesByYear(int year){
         return expenseRepository.findTotalExpenseByYear(year);
-    }
+    } 
 
     //Get list of expenses by Month
     //public List<Expense> getListExpensesByMonth(int year, Month month){
@@ -144,8 +146,7 @@ public class ExpenseService {
         return expenseRepository.findByExpenseTypeOrderByCreationDateDesc(expenseType, page);
     }
   */  
- 
-
-
-
 }
+
+
+

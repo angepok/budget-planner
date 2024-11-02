@@ -1,5 +1,7 @@
 package com.myproject.budgetplanner.expenseType;
 
+
+
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +48,7 @@ public class ExpenseTypeService {
      * return The saved ExpenseType entity.
      * throws ExpenseTypeAlreadyExistsException If an ExpenseType already exists in the database.
      */
+    
     public ExpenseType createExpenseType(ExpenseType expenseType) throws ExpenseTypeException {
         if (expenseTypeRepository.existsByExpenseTypeIgnoreCase(expenseType.getExpenseType())){
         throw new ExpenseTypeException("Expense type with name " + expenseType.getExpenseType() 
@@ -62,7 +65,7 @@ public class ExpenseTypeService {
         }
         expenseTypeRepository.deleteById(id);
     }
-
+}
     /**
      * Initializes the application's default data.
      *
@@ -71,6 +74,7 @@ public class ExpenseTypeService {
      * existing ExpenseType records in the database. If no records are found, it
      * creates and saves a default ExpenseType with the name "Home".
      
+    /* 
     @PostConstruct
     public void init() {
         List <ExpenseType> allExpenses = expenseTypeRepository.findAll();
@@ -79,6 +83,7 @@ public class ExpenseTypeService {
             expenseTypeRepository.save(defaultExpenseType);
         }
     }
-        */
+        
 
 }
+   */

@@ -1,5 +1,6 @@
 package com.myproject.budgetplanner.expense;
 
+
 import java.math.BigDecimal;
 import java.time.Month;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,12 +12,13 @@ import org.springframework.stereotype.Repository;
 public interface ExpenseRepository extends JpaRepository<Expense,Long> {
 
 
-    /**
-     * Check if an ExpenseType for a given expense(case-insensitive) exists.
+    
+     /* Check if an ExpenseType for a given expense(case-insensitive) exists.
      param expenseType The expense category to check for existence.
      return {@code true} if an ExpenseType with the specified expense category
      *         (case-insensitive) exists, otherwise {@code false}.
      */
+    
     @Query("SELECT COUNT(e) > 0 FROM Expense e WHERE LOWER(e.expenseType) = LOWER(:expenseType)")
     boolean existsByExpenseTypeIgnoreCase(@Param("expenseType") String expenseType);
 
@@ -45,6 +47,7 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long> {
 
     
 }
+
 
 
 
