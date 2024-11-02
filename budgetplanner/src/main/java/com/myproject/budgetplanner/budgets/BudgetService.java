@@ -1,6 +1,6 @@
 package com.myproject.budgetplanner.budgets;
 
-/* 
+ 
 import com.myproject.budgetplanner.NoDataAvailableException;
 import com.myproject.budgetplanner.expense.Expense;
 import com.myproject.budgetplanner.expense.ExpenseService;
@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 public class BudgetService {
      
 
-    
 
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
@@ -41,6 +40,7 @@ public class BudgetService {
         return calculateTotalIncome().subtract(calculateTotalExpenses());
     }
 
+
     // Budget summary method with name parameter
     public Budget getBudgetSummary(String name) {
         if (name == null || name.trim().isEmpty()) {
@@ -58,8 +58,9 @@ public class BudgetService {
     // Monthly budget with error handling
     public MonthlyBudget calculateMonthlyBudget(int year, Month month) {
         List<Income> monthlyIncome = incomeService.getIncomeByMonth(year, month);
-        List<Expense> monthlyExpenses = expenseService.getExpensesByMonth(year, month);
+        //List<Expense> monthlyExpenses = expenseService.getExpensesByMonth(year, month);
 
+        /* 
         if (monthlyIncome.isEmpty() && monthlyExpenses.isEmpty()) {
             // Option 1: Return a default budget with zero values
             //return new MonthlyBudget(month, year, BigDecimal.ZERO, BigDecimal.ZERO);
@@ -75,11 +76,12 @@ public class BudgetService {
 
         return new MonthlyBudget(month, year, totalIncome, totalExpenses);
     }
+        
 
     // Yearly budget with error handling
     public YearlyBudget calculateYearlyBudget(int year) {
-        Double yearlyIncome = incomeService.getTotalIncomeByYear(year);
-        List<Expense> yearlyExpenses = expenseService.getExpensesByYear(year);
+        BigDecimal yearlyIncome = incomeService.getTotalIncomeByYear(year);
+        List<Expense> yearlyExpenses = expenseService.findExpensesByYear(year);
 
 
         //Check for null instead of using isEmpty()
@@ -99,8 +101,9 @@ public class BudgetService {
         return new YearlyBudget(year, totalIncome, totalExpenses); 
         
     }
-        
+    */    
 }
-*/
+    
+
 
 

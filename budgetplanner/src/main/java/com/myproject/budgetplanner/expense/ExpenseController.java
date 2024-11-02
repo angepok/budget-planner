@@ -20,7 +20,6 @@ public class ExpenseController {
     //constructor based dependency injection
     public final ExpenseService expenseService;
 
-    @Autowired
     public ExpenseController(ExpenseService expenseService){
         this.expenseService = expenseService;
     }

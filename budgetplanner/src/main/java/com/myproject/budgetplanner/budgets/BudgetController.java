@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/budget")
 public class BudgetController {
-    /* 
+    
     private final BudgetService budgetService;
     
         @Autowired
@@ -39,7 +39,7 @@ public class BudgetController {
         //public YearlyBudget getYearlyBudget(@RequestParam int year) {
         //   return budgetService.calculateYearlyBudget(year);
         //}
-        */
+        
     }
     
 

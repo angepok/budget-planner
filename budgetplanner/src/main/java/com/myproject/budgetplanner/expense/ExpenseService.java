@@ -6,30 +6,22 @@ import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 
-import com.myproject.budgetplanner.expenseType.ExpenseTypeService;
-import com.myproject.budgetplanner.expenseType.ExpenseTypeRepository;
-
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 //import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 @Service
 public class ExpenseService {
 
     public final ExpenseRepository expenseRepository;
-    public final ExpenseTypeService expenseTypeService;
     
     //instance of expense repo
     //@Autowired
-    public ExpenseService(ExpenseRepository expenseRepository, ExpenseTypeService expenseTypeService, ExpenseTypeRepository expenseTypeRepository){
+    public ExpenseService(ExpenseRepository expenseRepository){
         this.expenseRepository = expenseRepository;
-        this.expenseTypeService = expenseTypeService;
     }
 
     
@@ -75,14 +67,9 @@ public class ExpenseService {
         
         // Update fields
         existingExpense.setName(updatedExpense.getName());
-        existingExpense.setExpenseType(updatedExpense.getExpenseType());
         existingExpense.setAmount(updatedExpense.getAmount());
         existingExpense.setDate(updatedExpense.getDate());
-        
-        // Update expense type if needed
-       if (updatedExpense.getExpenseType() != null) {
-        existingExpense.setExpenseType(updatedExpense.getExpenseType());
-        }
+    
 
         // Save the updated expense
         return expenseRepository.save(existingExpense);
@@ -104,10 +91,10 @@ public class ExpenseService {
 
      }
 
-    // get total expenses by Month
-    public BigDecimal getExpensesByMonth(int year, Month month){
-        return expenseRepository.findTotalExpenseByMonth(year, month);
-    }
+    // // get total expenses by Month
+    // public BigDecimal getExpensesByMonth(int year, Month month){
+    //     return expenseRepository.findTotalExpenseByMonth(year, month);
+    // }
 
     // get total expenses by year
     public BigDecimal findExpensesByYear(int year){

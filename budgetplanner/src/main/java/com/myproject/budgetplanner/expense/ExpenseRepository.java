@@ -19,14 +19,12 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long> {
      *         (case-insensitive) exists, otherwise {@code false}.
      */
     
-    @Query("SELECT COUNT(e) > 0 FROM Expense e WHERE LOWER(e.expenseType) = LOWER(:expenseType)")
-    boolean existsByExpenseTypeIgnoreCase(@Param("expenseType") String expenseType);
 
     @Query("SELECT SUM(e.amount) FROM Expense e")
     BigDecimal findTotalExpense();
 
-    @Query("SELECT SUM(e.amount) FROM Expense e WHERE e.year = :year AND e.month = :month")
-    BigDecimal findTotalExpenseByMonth(int year, Month month);
+    // @Query("SELECT SUM(e.amount) FROM Expense e WHERE e.year = :year AND e.month = :month")
+    // BigDecimal findTotalExpenseByMonth(int year, Month month);
 
     @Query("SELECT SUM(e.amount) FROM Expense e WHERE YEAR(e.date) = :year")
     BigDecimal findTotalExpenseByYear(@Param("year") int year);
