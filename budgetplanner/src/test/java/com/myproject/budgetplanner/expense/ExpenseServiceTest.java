@@ -68,6 +68,7 @@ public class ExpenseServiceTest {
         assertEquals(updatedExpense.getName(), capturedExpense.getName());
         assertEquals(updatedExpense.getAmount(), capturedExpense.getAmount());
         assertEquals(updatedExpense.getCreationDate(), capturedExpense.getCreationDate());
+        assertEquals(updatedExpense.getDate(), capturedExpense.getDate());
     }
         
      

@@ -9,6 +9,7 @@ import com.myproject.budgetplanner.income.IncomeService;
 import java.math.BigDecimal;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,13 +46,24 @@ public class BudgetService {
 
     // Generate a budget for a specific month and year
     public Budget getBudgetForMonth(int year, Month month) {
+      //  Optional<Budget> existingBudget = budgetRepository.findByYearAndMonth(year, month);
+    //if (existingBudget.isPresent()) {
+    //    return existingBudget.get();
+    //}    
+        
+        
         Budget budget = new Budget(month.name() + " " + year);
+        //try {
         budget.setTotalIncome(calculateTotalIncome(year, month));
         budget.setTotalExpenses(calculateTotalExpenses(year, month));
         budget.setBalance(calculateBalance(year, month)); // Updates balance based on total income and expenses
-        //budget.calculateBalance(budget.getTota);
         return budget;
-    }
+        // } catch (Exception e) {
+        //    throw new BudgetException("Error calculating budget for " + month + " " + year, e);
+        }
+        //return budgetRepository.save(budget);
+        
+    //}
    
         
 }

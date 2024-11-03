@@ -3,6 +3,7 @@ package com.myproject.budgetplanner.budgets;
 
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,6 +19,8 @@ import com.myproject.budgetplanner.income.Income;
 @Repository
 public interface BudgetRepository extends JpaRepository<Budget, Long>{
     
+    //@Query("SELECT b FROM Budget b WHERE b.year = :year AND b.month = :month")
+   // Optional<Budget> findByYearAndMonth(@Param("year") int year, @Param("month") Month month);
     // is function necessary
     //@Query("SELECT i FROM Income i WHERE FUNCTION YEAR(i.date) = :year AND EXTRACT(MONTH FROM i.date) = :month")
     //List<Income> findByYearAndMonth(@Param("year") int year, @Param("month") Month month);
