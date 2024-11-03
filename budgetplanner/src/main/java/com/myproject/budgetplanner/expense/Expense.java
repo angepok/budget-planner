@@ -35,10 +35,12 @@ public class Expense {
 
     private int year;
     private Month month;
+
     /*
-     * With these validations, the amount field must contain a non-null BigDecimal * value greater than 0.0,
-     * formatted with up to 15 integer digits and exactly 2 decimal places if needed.* NotNull Specifies that amount cannot be null.*/
-     
+     * the amount field must contain a non-null BigDecimal * value greater than 0.0,
+     * formatted with up to 15 integer digits and exactly 2 decimal places if
+     * needed.* NotNull Specifies that amount cannot be null.
+     */
 
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer = 15, fraction = 2)
@@ -55,5 +57,4 @@ public class Expense {
     @CreationTimestamp
     private Timestamp creationDate;
 
-    
 }

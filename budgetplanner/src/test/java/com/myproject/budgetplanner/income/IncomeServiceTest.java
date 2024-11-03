@@ -1,6 +1,5 @@
 package com.myproject.budgetplanner.income;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -18,7 +17,6 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-
 public class IncomeServiceTest {
 
     IncomeService incomeService;
@@ -35,7 +33,8 @@ public class IncomeServiceTest {
     @Test
     void shouldCreateIncome() throws IncomeException {
         // given
-        final Income income = new Income(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+        final Income income = new Income(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(),
+                LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
 
         // when
         incomeService.createIncome(income);
@@ -48,7 +47,8 @@ public class IncomeServiceTest {
     void shouldUpdateIncome() {
         // given
         final Long id = 1L;
-        final Income updatedIncome = new Income(1L, "X", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+        final Income updatedIncome = new Income(1L, "X", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(),
+                LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
 
         final Income income = new Income();
         when(incomeRepository.findById(id)).thenReturn(Optional.of(income));

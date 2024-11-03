@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Optional;
 
-
 public class ExpenseServiceTest {
 
     ExpenseService expenseService;
@@ -36,7 +35,8 @@ public class ExpenseServiceTest {
     @Test
     void shouldCreateExpense() throws ExpenseException {
         // given
-        final Expense expense = new Expense(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+        final Expense expense = new Expense(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(),
+                Timestamp.valueOf(LocalDateTime.now()));
 
         // when
         expenseService.createExpense(expense);
@@ -45,12 +45,12 @@ public class ExpenseServiceTest {
         Mockito.verify(expenseRepository).save(expense);
     }
 
-    
     @Test
     void shouldUpdateExpense() {
         // given
         final Long id = 1L;
-        final Expense updatedExpense = new Expense(1L, "X", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+        final Expense updatedExpense = new Expense(1L, "X", 2020, Month.JULY, BigDecimal.valueOf(10.00),
+                LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
 
         final Expense expense = new Expense();
         when(expenseRepository.findById(id)).thenReturn(Optional.of(expense));
@@ -70,16 +70,13 @@ public class ExpenseServiceTest {
         assertEquals(updatedExpense.getCreationDate(), capturedExpense.getCreationDate());
         assertEquals(updatedExpense.getDate(), capturedExpense.getDate());
     }
-        
-     
-    
+
     @Test
     void shouldDeleteExpense() {
         // given
         final Long id = 0L;
 
         when(expenseRepository.existsById(id)).thenReturn(true);
-       
 
         // when
         expenseService.deleteExpense(id);
@@ -89,4 +86,3 @@ public class ExpenseServiceTest {
     }
 
 }
-

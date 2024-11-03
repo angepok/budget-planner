@@ -45,7 +45,8 @@ class IncomeControllerTest {
         final Long id = 0L;
 
         // when
-        when(incomeService.getIncome(id)).thenReturn(new Income(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now())));
+        when(incomeService.getIncome(id)).thenReturn(new Income(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00),
+                LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now())));
         final ResponseEntity<Income> response = incomeController.getIncomeById(id);
 
         // then
@@ -56,7 +57,8 @@ class IncomeControllerTest {
     @Test
     void createIncome() throws IncomeException {
         // given
-        final Income income = new Income(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+        final Income income = new Income(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(),
+                LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
 
         // when
         when(incomeService.createIncome(income)).thenReturn(income);
@@ -71,7 +73,8 @@ class IncomeControllerTest {
     void updateIncome() {
         // given
         final Long id = 0L;
-        final Income updatedIncome = new Income(0L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+        final Income updatedIncome = new Income(0L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(),
+                LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
 
         // when
         when(incomeService.updateIncome(id, updatedIncome)).thenReturn(updatedIncome);

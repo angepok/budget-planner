@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping("/api/income")
 public class IncomeController {
@@ -22,7 +21,7 @@ public class IncomeController {
     public final IncomeService incomeService;
 
     @Autowired
-    public IncomeController(IncomeService incomeService){
+    public IncomeController(IncomeService incomeService) {
         this.incomeService = incomeService;
     }
 
@@ -63,38 +62,4 @@ public class IncomeController {
     }
 }
 
-    /* 
-    @GetMapping
-    public List<Income> getAllIncome(){
-        return incomeService.getAllIncome();
-    }
-
-    @GetMapping(value = "/{id}", produces = "application/json")
-    public  Income getIncomeById(@PathVariable long id) throws Exception{
-        Income income = incomeService.getIncome(id);
-        if (income == null) {
-            throw new Exception("Income not found with id: " + id); // Custom exception
-        }
-        return income;  // Return the found income
-        //return incomeService.getIncome(id);
-    }
-
-    @PostMapping(produces = "application/json")
-    public Income createIncome(@RequestBody Income income) throws IncomeException{
-        return incomeService.createIncome(income);
-    }
-
-    @PutMapping(value = "/{id}", produces = "application/json")
-    public Income updateIncome(@PathVariable Long id, @RequestBody Income updatedIncome)
-    {
-        return incomeService.updateIncome(id, updatedIncome);
-    } 
-
-
-    @DeleteMapping(value = "/{id}")
-    public void deleteIncome(@PathVariable Long id){
-        incomeService.deleteIncome(id);
-        
-    }
-    */
 

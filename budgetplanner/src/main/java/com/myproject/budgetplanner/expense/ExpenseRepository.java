@@ -1,6 +1,5 @@
 package com.myproject.budgetplanner.expense;
 
-
 import java.math.BigDecimal;
 import java.time.Month;
 
@@ -10,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ExpenseRepository extends JpaRepository<Expense,Long> {
+public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     @Query("SELECT SUM(e.amount) FROM Expense e")
     BigDecimal findTotalExpense();
@@ -21,27 +20,4 @@ public interface ExpenseRepository extends JpaRepository<Expense,Long> {
     @Query("SELECT SUM(e.amount) FROM Expense e WHERE YEAR(e.date) = :year")
     BigDecimal findTotalExpenseByYear(@Param("year") int year);
 
-    //@Query("SELECT e FROM Expense e WHERE YEAR(e.date) = :year AND MONTH(e.date) = :month")
-    //List<Expense> findByYearAndMonth(@Param("year") int year, @Param("month") int month);
-
-    //@Query("SELECT e FROM Expense e WHERE YEAR(e.date) = :year")
-    //List<Expense> findByYear(@Param("year") int year);
-
-
-    //Page<Expense> findByDateBetweenAndExpenseTypeOrderByCreationDateDesc(LocalDate startDate, LocalDate endDate, 
-    //String expenseType, Pageable pageable);
-    
-    //Page<Expense> findByExpenseTypeOrderByCreationDateDesc(String expenseType, Pageable pageable);
-
-    //Page<Expense>  findByDateBetweenOrderByCreationDateDesc(LocalDate startDate, LocalDate endDate, Pageable page);
-
-    
 }
-
-
-
-
-
-
-
-

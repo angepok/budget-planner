@@ -21,5 +21,4 @@ public interface IncomeRepository extends JpaRepository<Income, Long> {
     @Query("SELECT SUM(i.amount) FROM Income i WHERE YEAR(i.date) = :year")
     BigDecimal findTotalIncomeByYear(@Param("year") int year);
 
-
 }

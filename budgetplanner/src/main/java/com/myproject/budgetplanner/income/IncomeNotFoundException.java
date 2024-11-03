@@ -9,5 +9,3 @@ public class IncomeNotFoundException extends RuntimeException {
         super(message);
     }
 }
-
-

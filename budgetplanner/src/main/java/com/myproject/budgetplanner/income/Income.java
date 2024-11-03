@@ -13,8 +13,6 @@ import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -37,12 +35,12 @@ public class Income {
     private Month month;
 
     @DecimalMin(value = "0.0", inclusive = false)
-    @Digits(integer=15, fraction=2)
+    @Digits(integer = 15, fraction = 2)
     @NotNull(message = "Please specify an amount")
     private BigDecimal amount;
-    
+
     public void setAmount(BigDecimal amount) {
-     this.amount = amount;
+        this.amount = amount;
     }
 
     @Column(name = "income_date")
@@ -54,16 +52,4 @@ public class Income {
     @CreationTimestamp
     private Timestamp creationDate;
 
-    // New constructor
-//    public Income(Long id, String name, BigDecimal amount, int year, Month month) {
-//        this.id = id;
-//        this.name = name;
-//        this.amount = amount;
-//        this.year = year;
-//        this.month = month;
-//    }
-
-
-
 }
-

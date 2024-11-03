@@ -2,8 +2,6 @@ package com.myproject.budgetplanner.income;
 
 public class IncomeException extends Exception {
 
-
-    
     // Default constructor with a general message
     public IncomeException() {
         super("Income-related error occurred.");
@@ -24,6 +22,3 @@ public class IncomeException extends Exception {
         super(cause);
     }
 }
-
-
-
