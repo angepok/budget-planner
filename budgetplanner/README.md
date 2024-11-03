@@ -63,6 +63,6 @@ This Budget Planner API is a RESTful web service built using Java and Spring Boo
    mvn spring-boot:run
    ```
 
-3. **Dumpfile location**: C:\Users\Admin\budget-planner\budgetplannerdumpfile.sql
+3. **Dumpfile location**: [text](src/main/java/com/myproject/budgetplanner/budgetplannerdumpfile.sql)
 ## Documentation
-For detailed API documentation, Swagger is integrated into the project, providing a user-friendly interface to explore available endpoints and their parameters.
+For detailed API documentation, Swagger (http://localhost:8080/swagger-ui/index.html#) is integrated into the project, providing a user-friendly interface to explore available endpoints and their parameters.
