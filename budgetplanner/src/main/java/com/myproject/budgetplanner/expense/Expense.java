@@ -34,7 +34,7 @@ public class Expense {
     private String name;
 
     private int year;
-    private String month;
+    private Month month;
     /*
      * With these validations, the amount field must contain a non-null BigDecimal
      * value greater than 0.0,

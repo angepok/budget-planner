@@ -15,17 +15,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BudgetService {
-     
 
-
+    @Autowired
+    private final BudgetRepository budgetRepository;
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
 
-    @Autowired
-    public BudgetService(IncomeService incomeService, ExpenseService expenseService){
+
+    public BudgetService(BudgetRepository budgetRepository, IncomeService incomeService, ExpenseService expenseService){
+        this.budgetRepository = budgetRepository;
         this.incomeService = incomeService;
         this.expenseService = expenseService;
-    }
+    } 
 
     // Calculation methods
     public BigDecimal calculateTotalIncome(){
@@ -40,7 +41,20 @@ public class BudgetService {
         return calculateTotalIncome().subtract(calculateTotalExpenses());
     }
 
+    public Budget getBudgetForMonth(int year, Month month) {
+        
+        List<Income> monthlyIncomes = budgetRepository.findByYearAndMonth(year, month);
+        List<Expense> monthlyexpenses = budgetRepository.findExpenseByYearAndMonth(year, month);
+        
 
+        Budget budget = new Budget(month.name() + " " + year);
+        budget.setTotalIncome(calculateTotalIncome(incomes));
+        budget.setTotalExpenses(calculateTotalExpenses(expenses));
+        budget.calculateBalance(); // Update balance based on total income and expenses
+
+        return budget;
+    }
+    /* 
     // Budget summary method with name parameter
     public Budget getBudgetSummary(String name) {
         if (name == null || name.trim().isEmpty()) {

@@ -3,14 +3,15 @@ package com.myproject.budgetplanner.expense;
 
 import org.springframework.stereotype.Service;
 
-import com.myproject.budgetplanner.income.IncomeException;
+
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
+import java.time.Month;
 import java.util.List;
-import java.util.Optional;
+
 //import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 
@@ -91,7 +92,7 @@ public class ExpenseService {
      }
 
     //get total expenses by Month
-    public BigDecimal getExpensesByMonth(int year, String month){
+    public BigDecimal getExpensesByMonth(int year, Month month){
       return expenseRepository.findTotalExpenseByMonth(year, month);
      }
 

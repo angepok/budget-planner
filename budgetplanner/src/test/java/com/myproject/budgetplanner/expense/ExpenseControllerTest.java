@@ -44,7 +44,7 @@ package com.myproject.budgetplanner.expense;
             final Long id = 0L;
     
             // when
-            when(expenseService.getExpenseById(id)).thenReturn(new Expense(1L, "", 2020, "JULY", BigDecimal.valueOf(10.00), LocalDate.now(),Timestamp.valueOf(LocalDateTime.now())));
+            when(expenseService.getExpenseById(id)).thenReturn(new Expense(1L, "", 2020,Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(),Timestamp.valueOf(LocalDateTime.now())));
             final ResponseEntity<Expense> response = expenseController.getExpenseById(id);
     
             // then
@@ -55,7 +55,7 @@ package com.myproject.budgetplanner.expense;
         @Test
         void createExpense() throws ExpenseException {
             // given
-            final Expense expense = new Expense(1L, "", 2020, "JULY", BigDecimal.valueOf(10.00), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+            final Expense expense = new Expense(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
     
             // when
             when(expenseService.createExpense(expense)).thenReturn(expense);
@@ -70,7 +70,7 @@ package com.myproject.budgetplanner.expense;
         void updateExpense() {
             // given
             final Long id = 0L;
-            final Expense updatedExpense = new Expense(0L,"", 2020, "JULY", BigDecimal.valueOf(10.00), LocalDate.now(),Timestamp.valueOf(LocalDateTime.now()));
+            final Expense updatedExpense = new Expense(0L,"", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(),Timestamp.valueOf(LocalDateTime.now()));
     
             // when
             when(expenseService.updateExpense(id, updatedExpense)).thenReturn(updatedExpense);
