@@ -39,63 +39,62 @@ package com.myproject.budgetplanner.expense;
         }
     
         @Test
-        void getIncomeById() {
+        void getExpenseById() {
             // given
             final Long id = 0L;
     
             // when
-            when(expenseService.getExpense(id)).thenReturn(new Expense(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now())));
-            final ResponseEntity<Expense> response = ExpenseController.getExpenseById(id);
+            when(expenseService.getExpenseById(id)).thenReturn(new Expense(1L, "", 2020, "JULY", BigDecimal.valueOf(10.00), LocalDate.now(),Timestamp.valueOf(LocalDateTime.now())));
+            final ResponseEntity<Expense> response = expenseController.getExpenseById(id);
     
             // then
             assertEquals(HttpStatusCode.valueOf(200), response.getStatusCode());
-            verify(expenseService).getIncome(id);
+            verify(expenseService).getExpenseById(id);
         }
     
         @Test
-        void createIncome() throws ExpenseException {
+        void createExpense() throws ExpenseException {
             // given
-            final Income income = new Income(1L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+            final Expense expense = new Expense(1L, "", 2020, "JULY", BigDecimal.valueOf(10.00), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
     
             // when
-            when(incomeService.createIncome(income)).thenReturn(income);
-            final ResponseEntity<Income> response = incomeController.createIncome(income);
+            when(expenseService.createExpense(expense)).thenReturn(expense);
+            final ResponseEntity<Expense> response = expenseController.createExpense(expense);
     
             // then
             assertEquals(HttpStatus.CREATED, response.getStatusCode());
-            assertEquals(income, response.getBody());
+            assertEquals(expense, response.getBody());
         }
     
         @Test
-        void updateIncome() {
+        void updateExpense() {
             // given
             final Long id = 0L;
-            final Income updatedIncome = new Income(0L, "", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+            final Expense updatedExpense = new Expense(0L,"", 2020, "JULY", BigDecimal.valueOf(10.00), LocalDate.now(),Timestamp.valueOf(LocalDateTime.now()));
     
             // when
-            when(incomeService.updateIncome(id, updatedIncome)).thenReturn(updatedIncome);
-            final ResponseEntity<Income> response = incomeController.updateIncome(id, updatedIncome);
+            when(expenseService.updateExpense(id, updatedExpense)).thenReturn(updatedExpense);
+            final ResponseEntity<Expense> response = expenseController.updateExpense(id, updatedExpense);
     
             // then
             assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals(updatedIncome, response.getBody());
+            assertEquals(updatedExpense, response.getBody());
         }
     
         @Test
-        void deleteIncome() {
+        void deleteExpense() {
             // given
             final Long id = 0L;
     
             // when
-            when(incomeService.getIncome(id)).thenReturn(new Income());
-            incomeController.deleteIncome(id);
+            when(expenseService.getExpenseById(id)).thenReturn(new Expense());
+            expenseController.deleteExpense(id);
     
             // then
-            verify(incomeService, times(1)).getIncome(id);
-            verify(incomeService, times(1)).deleteIncome(id);
+            verify(expenseService, times(1)).getExpenseById(id);
+            verify(expenseService, times(1)).deleteExpense(id);
         }
     }
-    
-}
+
 
 

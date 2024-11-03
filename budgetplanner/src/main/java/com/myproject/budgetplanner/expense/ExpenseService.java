@@ -3,11 +3,12 @@ package com.myproject.budgetplanner.expense;
 
 import org.springframework.stereotype.Service;
 
+import com.myproject.budgetplanner.income.IncomeException;
+
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
-import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -18,33 +19,31 @@ public class ExpenseService {
 
     public final ExpenseRepository expenseRepository;
     
-    //instance of expense repo
-    //@Autowired
     public ExpenseService(ExpenseRepository expenseRepository){
         this.expenseRepository = expenseRepository;
     }
 
     
-    //getAllExpenses
+    // getAllExpenses
     public List<Expense> getAllExpenses(){
         return expenseRepository.findAll(Sort.by("creationDate").descending());
     }
 
-    //getExpenseById 
-    //Otional works better than throwing  an exception
-    public Optional<Expense> getExpenseById(Long id) {
-        return expenseRepository.findById(id);
-    }
-    
-    /*
+    // getExpenseById
     public Expense getExpenseById(Long id){
         return expenseRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException("Expense not found with id: " + id));
     }
-    */
+
+    //getExpenseById 
+    //Otional works better than throwing  an exception
+    //public Optional<Expense> getExpenseById(Long id) {
+    //   return expenseRepository.findById(id);
+    //}
+    
 
     //createExpense
-    public Expense createExpense(@NotNull Expense expense) {
+    public Expense createExpense(@NotNull Expense expense) throws ExpenseException {
         return expenseRepository.save(expense);
     }
     
@@ -91,10 +90,10 @@ public class ExpenseService {
 
      }
 
-    // // get total expenses by Month
-    // public BigDecimal getExpensesByMonth(int year, Month month){
-    //     return expenseRepository.findTotalExpenseByMonth(year, month);
-    // }
+    //get total expenses by Month
+    public BigDecimal getExpensesByMonth(int year, String month){
+      return expenseRepository.findTotalExpenseByMonth(year, month);
+     }
 
     // get total expenses by year
     public BigDecimal findExpensesByYear(int year){

@@ -15,7 +15,7 @@ public class IncomeService {
         this.incomeRepository = incomeRepository;
     }
 
-
+    // getAllIncome
     public Income getIncome(Long id){
         return incomeRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException("Income not found with id: " + id));

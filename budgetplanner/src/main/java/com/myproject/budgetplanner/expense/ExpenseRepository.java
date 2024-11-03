@@ -11,20 +11,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense,Long> {
 
-
-    
-     /* Check if an ExpenseType for a given expense(case-insensitive) exists.
-     param expenseType The expense category to check for existence.
-     return {@code true} if an ExpenseType with the specified expense category
-     *         (case-insensitive) exists, otherwise {@code false}.
-     */
-    
-
     @Query("SELECT SUM(e.amount) FROM Expense e")
     BigDecimal findTotalExpense();
 
-    // @Query("SELECT SUM(e.amount) FROM Expense e WHERE e.year = :year AND e.month = :month")
-    // BigDecimal findTotalExpenseByMonth(int year, Month month);
+    @Query("SELECT SUM(e.amount) FROM Expense e WHERE e.year = :year AND e.month = :month")
+    BigDecimal findTotalExpenseByMonth(int year, String month);
 
     @Query("SELECT SUM(e.amount) FROM Expense e WHERE YEAR(e.date) = :year")
     BigDecimal findTotalExpenseByYear(@Param("year") int year);

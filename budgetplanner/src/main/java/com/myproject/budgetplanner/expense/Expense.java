@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Month;
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,13 +30,13 @@ public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    //need to insert wrong data entered annotation
-    
 
     @NotNull(message = "Please specify the name of expense")
     @NotEmpty(message = "Expense name cannot be empty")
     private String name;
     
+    private int year;
+    private String month;
     /*
      * With these validations, the amount field must contain a non-null BigDecimal value greater than 0.0, 
      * formatted with up to 15 integer digits and exactly 2 decimal places if needed.
