@@ -3,7 +3,7 @@ package com.myproject.budgetplanner.expense;
 
 import org.springframework.stereotype.Service;
 
-
+import com.myproject.budgetplanner.income.IncomeException;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
@@ -27,7 +27,7 @@ public class ExpenseService {
     
     // getAllExpenses
     public List<Expense> getAllExpenses(){
-        return expenseRepository.findAll(Sort.by("creationDate").descending());
+        return expenseRepository.findAll();
     }
 
     // getExpenseById
@@ -36,15 +36,11 @@ public class ExpenseService {
         .orElseThrow(() -> new EntityNotFoundException("Expense not found with id: " + id));
     }
 
-    //getExpenseById 
-    //Otional works better than throwing  an exception
-    //public Optional<Expense> getExpenseById(Long id) {
-    //   return expenseRepository.findById(id);
-    //}
-    
-
     //createExpense
     public Expense createExpense(@NotNull Expense expense) throws ExpenseException {
+        //if (expense.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+        //throw new ExpenseException("Expense amount cannot be negative");
+     //}
         return expenseRepository.save(expense);
     }
     
@@ -69,6 +65,7 @@ public class ExpenseService {
         existingExpense.setName(updatedExpense.getName());
         existingExpense.setAmount(updatedExpense.getAmount());
         existingExpense.setDate(updatedExpense.getDate());
+        existingExpense.setCreationDate(updatedExpense.getCreationDate());
     
 
         // Save the updated expense
@@ -78,9 +75,10 @@ public class ExpenseService {
     
     //deleteExpense
     public void deleteExpense(Long id) {
-        Expense expense = expenseRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Expense not found with id: " + id));
-        expenseRepository.delete(expense);
+        if (!expenseRepository.existsById(id)) {
+                throw new EntityNotFoundException("Expense not found with id: " + id);
+        }
+            expenseRepository.deleteById(id);
     }
         
 
@@ -101,38 +99,7 @@ public class ExpenseService {
         return expenseRepository.findTotalExpenseByYear(year);
     } 
 
-    //Get list of expenses by Month
-    //public List<Expense> getListExpensesByMonth(int year, Month month){
-     //return expenseRepository.findByYearAndMonth(year, month.getValue());
-    //}
-
-    //get list of expense by year
-    //public List<Expense> getExpensesByYear(int year) {
-    //   return expenseRepository.findByYear(year);
-    //}
-
-    /* 
-    // Can chnage Page to List
-    //Get Expenses by Year, Month, and Type
-    public Page<Expense> getExpensesByYearMonthAndType(int year, Month month, String expenseType, Pageable page) {
-    LocalDate startDate = LocalDate.of(year, month, 1);
-    LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
-    return expenseRepository.findByDateBetweenAndExpenseTypeOrderByCreationDateDesc(startDate, endDate, expenseType, page);
-}
-
-    //Get expenses by year and month
-    public Page<Expense> getExpensesByYearMonth(int year, Month month, Pageable page) {
-    LocalDate startDate = LocalDate.of(year, month, 1);
-    LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth());
-    return expenseRepository.findByDateBetweenOrderByCreationDateDesc(startDate, endDate, page);
-}
-
-
-    //get expenses by type
-    public Page<Expense> getExpensesByType(String expenseType, Pageable page) {
-        return expenseRepository.findByExpenseTypeOrderByCreationDateDesc(expenseType, page);
-    }
-  */  
+    
 }
 
 

@@ -33,6 +33,7 @@ public class ExpenseController {
     public List<Expense> getAllExpenses(){
         return expenseService.getAllExpenses();
     }
+   
 
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Expense> getExpenseById(@PathVariable long id){

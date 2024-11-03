@@ -45,12 +45,12 @@ public class ExpenseServiceTest {
         Mockito.verify(expenseRepository).save(expense);
     }
 
-    /* 
+    
     @Test
     void shouldUpdateExpense() {
         // given
         final Long id = 1L;
-        final Expense updatedExpense = new Expense(1L, "X", 2020,Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
+        final Expense updatedExpense = new Expense(1L, "X", 2020, Month.JULY, BigDecimal.valueOf(10.00), LocalDate.now(), Timestamp.valueOf(LocalDateTime.now()));
 
         final Expense expense = new Expense();
         when(expenseRepository.findById(id)).thenReturn(Optional.of(expense));
@@ -63,12 +63,13 @@ public class ExpenseServiceTest {
         verify(expenseRepository, times(1)).findById(id);
         verify(expenseRepository).save(expenseCaptor.capture());
 
-        final Expense capturedIncome = expenseCaptor.getValue();
+        final Expense capturedExpense = expenseCaptor.getValue();
 
         assertEquals(updatedExpense.getName(), capturedExpense.getName());
         assertEquals(updatedExpense.getAmount(), capturedExpense.getAmount());
         assertEquals(updatedExpense.getCreationDate(), capturedExpense.getCreationDate());
     }
+        
      
     
     @Test
@@ -76,7 +77,7 @@ public class ExpenseServiceTest {
         // given
         final Long id = 0L;
 
-        when(expenseRepository.findById(id)).thenReturn(true);
+        when(expenseRepository.existsById(id)).thenReturn(true);
        
 
         // when
@@ -87,5 +88,4 @@ public class ExpenseServiceTest {
     }
 
 }
-*/
-}
+

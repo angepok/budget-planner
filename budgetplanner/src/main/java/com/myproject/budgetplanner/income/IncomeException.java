@@ -2,8 +2,7 @@ package com.myproject.budgetplanner.income;
 
 public class IncomeException extends Exception {
 
-   
-//public class IncomeException extends RuntimeException {
+
     
     // Default constructor with a general message
     public IncomeException() {

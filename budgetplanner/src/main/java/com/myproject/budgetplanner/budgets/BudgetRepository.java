@@ -19,14 +19,14 @@ import com.myproject.budgetplanner.income.Income;
 public interface BudgetRepository extends JpaRepository<Budget, Long>{
     
     // is function necessary
-    @Query("SELECT i FROM Income i WHERE FUNCTION YEAR(i.date) = :year AND EXTRACT(MONTH FROM i.date) = :month")
-    List<Income> findByYearAndMonth(@Param("year") int year, @Param("month") Month month);
+    //@Query("SELECT i FROM Income i WHERE FUNCTION YEAR(i.date) = :year AND EXTRACT(MONTH FROM i.date) = :month")
+    //List<Income> findByYearAndMonth(@Param("year") int year, @Param("month") Month month);
 
     //@Query("SELECT i FROM Income i WHERE FUNCTION YEAR(i.date) = :year")
     //List<Income> findByYear(@Param("year") int year);
 
-    @Query("SELECT e FROM Expense e WHERE FUNCTION YEAR(e.date) = :year AND EXTRACT(MONTH FROM e.date) = :month")
-    List<Expense> findExpenseByYearAndMonth(@Param("year") int year, @Param("month") Month month);
+    //@Query("SELECT e FROM Expense e WHERE FUNCTION YEAR(e.date) = :year AND EXTRACT(MONTH FROM e.date) = :month")
+    //List<Expense> findExpenseByYearAndMonth(@Param("year") int year, @Param("month") Month month);
 
     //@Query("SELECT e FROM Expense e WHERE FUNCTION YEAR(e.date) = :year")
     //List<Expense> findExpenseByYear(@Param("year") int year);
