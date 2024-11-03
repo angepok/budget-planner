@@ -57,7 +57,7 @@ public class BudgetService {
         budget.setTotalIncome(calculateTotalIncome(year, month));
         budget.setTotalExpenses(calculateTotalExpenses(year, month));
         budget.setBalance(calculateBalance(year, month)); // Updates balance based on total income and expenses
-        return budget;
+        return budgetRepository.save(budget);
         // } catch (Exception e) {
         //    throw new BudgetException("Error calculating budget for " + month + " " + year, e);
         }

@@ -97,7 +97,7 @@ public class BudgetServiceTest {
         when(expenseService.getExpensesByMonth(year, month)).thenReturn(expenses);
         //when(budgetRepository.findByYearAndMonth(year, month)).thenReturn(Optional.empty());
 
-        Budget savedBudget = new Budget("January 2024");
+        Budget savedBudget = new Budget("JANUARY 2024");
         savedBudget.setTotalIncome(income);
         savedBudget.setTotalExpenses(expenses);
         savedBudget.setBalance(income.subtract(expenses));
