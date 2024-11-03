@@ -35,7 +35,7 @@ class ExpenseControllerTest {
         expenseController.getAllExpenses();
 
         // then
-        verify(expenseService).getAllExpenses();
+        verify(expenseService).getAllExpensesList();
     }
 
     @Test

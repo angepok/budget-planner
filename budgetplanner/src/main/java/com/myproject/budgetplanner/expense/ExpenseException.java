@@ -20,5 +20,4 @@ public class ExpenseException extends Exception {
     public String handleGetMethodNotSupportedException(HttpRequestMethodNotSupportedException e) {
         return "redirect:/expenses";
     }
-
 }

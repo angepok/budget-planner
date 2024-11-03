@@ -41,7 +41,7 @@ public class IncomeService {
 
     // updateIncome
     public Income updateIncome(Long id, Income updatedIncome) {
-        // Check if the expense exists
+        // Check if the income exists
         Income existingIncome = incomeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Income not found with id: " + id));
 

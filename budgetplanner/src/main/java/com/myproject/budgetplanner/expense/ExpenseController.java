@@ -26,7 +26,7 @@ public class ExpenseController {
 
     @GetMapping
     public List<Expense> getAllExpenses() {
-        return expenseService.getAllExpenses();
+        return expenseService.getAllExpensesList();
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")

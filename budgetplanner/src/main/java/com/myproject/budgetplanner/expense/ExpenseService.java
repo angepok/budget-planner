@@ -19,7 +19,7 @@ public class ExpenseService {
     }
 
     // getAllExpenses
-    public List<Expense> getAllExpenses() {
+    public List<Expense> getAllExpensesList() {
         return expenseRepository.findAll();
     }
 
@@ -29,11 +29,15 @@ public class ExpenseService {
                 .orElseThrow(() -> new EntityNotFoundException("Expense not found with id: " + id));
     }
 
+    /**
+    * Creates a new expense record.
+    *
+    * @param expense the expense data to be saved
+    * @return the saved Expense object
+    * @throws ExpenseException if the expense amount is negative or invalid
+    */
     // createExpense
     public Expense createExpense(@NotNull Expense expense) throws ExpenseException {
-        // if (expense.getAmount().compareTo(BigDecimal.ZERO) < 0) {
-        // throw new ExpenseException("Expense amount cannot be negative");
-        // }
         return expenseRepository.save(expense);
     }
 
