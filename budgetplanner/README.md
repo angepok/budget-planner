@@ -1,25 +1,51 @@
 
 # Budget Planner API
+Budget planner and expense tracker application; this application allows user to view their cashflow and manage their finances.
+
+# include screenshot of budget
+
 
 ## Overview
 This Budget Planner API is a RESTful web service built using Java and Spring Boot to help users manage their income and expenses. This API uses CRUD operations, allowing users to create, read, update, and delete records of their financial activities.
 
-## Techonologies
+## Technologies
 - Java
 - Spring Boot
 - Maven
 - MySQL
 
-## Features
-- **Full CRUD Operations**: Supports creating, reading, updating, and deleting both income and expense records.
-- **Data Persistence**: Utilizes a MySQL database for storing financial data.
-- **Filtering Capabilities**: Provides endpoints to filter expenses and income by year and month using Spring Data JPA.
 
 ## Getting Started
 
 ### Clone Repository
 1. Fork this repository in your GitHub account
-2. Clone your fork locally
+2. Clone your fork to your local machine.n eg:
+```
+git clone git@github.com:angepok/budget-planner.git
+```
+
+## Setup and Configuration
+1. **Prerequisites**:
+   - Java 11 or higher
+   - MySQL database server
+   - Maven for dependency management
+
+2. **Configuration**:
+   - Update the `application.properties` file with the correct database URL, username, and password.
+
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3307/budget_planner
+   spring.datasource.username=your_username
+   spring.datasource.password=your_password
+   ```
+
+3. **Run the Application**:
+   - Use your IDE to run the Spring Boot application or use the command line:
+   ```bash
+   mvn spring-boot:run
+   ```
+- Once the server is up and running, you may access the REST APIs over the following base path and the end points below:  `http://localhost:8080/api`
+
 
 
 ## API Endpoints
@@ -42,27 +68,8 @@ This Budget Planner API is a RESTful web service built using Java and Spring Boo
 - `GET /api/budget/{year}/{month}`: Retrieve the budget for a specific year and month.
 
 
-## Setup and Configuration
-1. **Prerequisites**:
-   - Java 11 or higher
-   - MySQL database server
-   - Maven for dependency management
 
-2. **Configuration**:
-   - Update the `application.properties` file with the correct database URL, username, and password.
+**Dumpfile location**: [(src/main/java/com/myproject/budgetplanner/budgetplannerdumpfile.sql)]
 
-   ```properties
-   spring.datasource.url=jdbc:mysql://localhost:3307/budget_planner
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
-   ```
-
-3. **Run the Application**:
-   - Use your IDE to run the Spring Boot application or use the command line:
-   ```bash
-   mvn spring-boot:run
-   ```
-
-3. **Dumpfile location**: [text](src/main/java/com/myproject/budgetplanner/budgetplannerdumpfile.sql)
 ## Documentation
 For detailed API documentation, Swagger (http://localhost:8080/swagger-ui/index.html#) is integrated into the project, providing a user-friendly interface to explore available endpoints and their parameters.
