@@ -17,13 +17,6 @@ public class BudgetService {
     private final IncomeService incomeService;
     private final ExpenseService expenseService;
 
-    public BudgetService(BudgetRepository budgetRepository, IncomeService incomeService,
-            ExpenseService expenseService) {
-        this.budgetRepository = budgetRepository;
-        this.incomeService = incomeService;
-        this.expenseService = expenseService;
-    }
-
     /**
      * An array to store monthly expenses for each month of the year.
      * The array has 12 elements, each representing a month (0 for January, 11 for
@@ -31,12 +24,18 @@ public class BudgetService {
      */
     private BigDecimal[] monthlyExpenses = new BigDecimal[12];
 
-    /**
-     * Constructor for the BudgetService class.
-     * Initializes each element in the monthlyExpenses array to BigDecimal.ZERO
-     * to avoid null values, ensuring each month starts with a zero expense balance.
-     */
-    public void BudgetService1() {
+    // Dependency injection
+    public BudgetService(BudgetRepository budgetRepository, IncomeService incomeService,
+            ExpenseService expenseService) {
+        this.budgetRepository = budgetRepository;
+        this.incomeService = incomeService;
+        this.expenseService = expenseService;
+
+        /**
+         * Constructor for the BudgetService class.
+         * Initializes each element in the monthlyExpenses array to BigDecimal.ZERO
+         * to avoid null values, ensuring each month starts with a zero expense balance.
+         */
         // Initialize monthlyExpenses with BigDecimal.ZERO to avoid null values
         for (int i = 0; i < 12; i++) {
             monthlyExpenses[i] = BigDecimal.ZERO;
