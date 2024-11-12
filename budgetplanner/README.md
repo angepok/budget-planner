@@ -1,12 +1,12 @@
 
 # Budget Planner API
-Budget planner and expense tracker application; this application allows user to view their cashflow and manage their finances.
+Budget planner and expense tracker application; this application allows users to view their cashflow and manage their finances.
 
-# include screenshot of budget
+![Budget Planner Sreenshot](image.png)
 
 
 ## Overview
-This Budget Planner API is a RESTful web service built using Java and Spring Boot to help users manage their income and expenses. This API uses CRUD operations, allowing users to create, read, update, and delete records of their financial activities.
+This Budget Planner API is a RESTful web service built using Java and Spring Boot to help users manage their income and expenses efficiently. This API provides CRUD operations, allowing users to create, read, update, and delete records of their financial activities.
 
 ## Technologies
 - Java
@@ -19,20 +19,19 @@ This Budget Planner API is a RESTful web service built using Java and Spring Boo
 
 ### Clone Repository
 1. Fork this repository in your GitHub account
-2. Clone your fork to your local machine.n eg:
+2. Clone your fork to your local machine. eg:
 ```
-git clone git@github.com:angepok/budget-planner.git
+git clone git@github.com:username/budget-planner.git
 ```
 
 ## Setup and Configuration
 1. **Prerequisites**:
-   - Java 11 or higher
+   - Java 21
    - MySQL database server
-   - Maven for dependency management
+   - Maven
 
 2. **Configuration**:
-   - Update the `application.properties` file with the correct database URL, username, and password.
-
+   - Update `application.properties`:
    ```properties
    spring.datasource.url=jdbc:mysql://localhost:3307/budget_planner
    spring.datasource.username=your_username
@@ -45,6 +44,9 @@ git clone git@github.com:angepok/budget-planner.git
    mvn spring-boot:run
    ```
 - Once the server is up and running, you may access the REST APIs over the following base path and the end points below:  `http://localhost:8080/api`
+
+4. **Database Dump**: 
+- Database dump file location: src/main/java/com/myproject/budgetplanner/budgetplannerdumpfile.sql
 
 
 
@@ -69,7 +71,7 @@ git clone git@github.com:angepok/budget-planner.git
 
 
 
-**Dumpfile location**: [(src/main/java/com/myproject/budgetplanner/budgetplannerdumpfile.sql)]
+
 
 ## Documentation
-For detailed API documentation, Swagger (http://localhost:8080/swagger-ui/index.html#) is integrated into the project, providing a user-friendly interface to explore available endpoints and their parameters.
+ Swagger is integrated into the project for detailed API documentation: (http://localhost:8080/swagger-ui/index.html#)
